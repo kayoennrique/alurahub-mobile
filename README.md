@@ -1,6 +1,6 @@
-<h4 align="center">
+<h2 align="center">
 AluraHub
-</h4>
+</h2>
 
 <p align="center">
   <a href="#information_source-what-is-going-online">What is AluraHub?</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
