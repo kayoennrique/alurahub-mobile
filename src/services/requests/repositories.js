@@ -25,3 +25,18 @@ export async function saveUserRepositories(postId, name, data, id) {
     return 'erro'
   }
 }
+
+export async function createUserRepositories(postId, name, data) {
+  try {
+    await api.post(`/repos`, {
+      name: name,
+      data: data,
+      postId: postId
+    });
+    return 'sucess'
+  }
+  catch (error) {
+    console.log(error)
+    return 'erro'
+  }
+}
