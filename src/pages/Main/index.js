@@ -42,7 +42,7 @@ export default function Main({ navigation }) {
                                 <Text style={styles.followersText}>Seguindo</Text>
                             </View>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('Repositories', { id: user.id })}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Repositories', { login: user.login })}>
                             <Text style={styles.repositories}>
                                 Ver os repositórios
                             </Text>

@@ -1,8 +1,8 @@
 import api from "../api";
 
-export async function getUserRepositories(id) {
+export async function getUserRepositories(login) {
   try {
-    const result = await api.get(`/repos?postId=${id}`);
+    const result = await api.get(`/users/${login}/repos`);
     return result.data
   }
   catch (error) {

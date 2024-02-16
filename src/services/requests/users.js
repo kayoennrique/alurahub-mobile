@@ -2,8 +2,8 @@ import api from "../api"
 
 export async function searchUser(userName) {
   try {
-    const result = await api.get(`/users?login=${userName}`);
-    return result.data[0]
+    const result = await api.get(`/users/${userName}`);
+    return result.data
   }
   catch (error) {
     console.log(error)

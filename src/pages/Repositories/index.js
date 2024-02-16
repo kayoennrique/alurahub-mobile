@@ -9,7 +9,7 @@ export default function Repositories({ route, navigation }) {
     const thisScreen = useIsFocused();
 
     useEffect(async () => {
-        const result = await getUserRepositories(route.params.id)
+        const result = await getUserRepositories(route.params.login)
         setRepo(result)
     }, [thisScreen])
 
