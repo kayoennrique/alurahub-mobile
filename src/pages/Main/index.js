@@ -2,56 +2,64 @@ import React, { useState } from 'react';
 import { Text, View, Image, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native';
 import styles from './styles';
 import api from '../../services/api';
+import { searchUser } from '../../services/requests/users';
 
 export default function Main({ navigation }) {
     const [userName, setUserName] = useState('');
     const [user, setUser] = useState({});
 
-    function Search() {
-        api.get('users').then(
-            response => {
-                console.log(response.data);
-            }
-        ).catch(error => {
-            console.log(error);
-        })
+    async function search() {
+        const result = await searchUser(userName)
+
+        setUserName('')
+        if (result) {
+            setUser(result)
+        }
+        else {
+            Alert.alert('Usuario não encontrado')
+            setUser({})
+        }
     }
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <>
-                    <View style={styles.backGr} />
-                    <View style={styles.areaImage}>
-                        <Image source={{ uri: 'https://github.com/kayoennrique.png' }} style={styles.image} />
-                    </View>
-                    <Text style={styles.nameText}>Kayo Ennrique</Text>
-                    <Text style={styles.textEmail}>Email do usuario</Text>
-                    <View style={styles.followersArea}>
-                        <View style={styles.followers}>
-                            <Text style={styles.followersNumber}>30</Text>
-                            <Text style={styles.followersText}>Seguidores</Text>
+                {
+                    user?.login &&
+                    <>
+                        <View style={styles.backGr} />
+                        <View style={styles.areaImage}>
+                            <Image source={{ uri: user.avatar_url }} style={styles.image} />
                         </View>
-                        <View style={styles.followers}>
-                            <Text style={styles.followersNumber}>40</Text>
-                            <Text style={styles.followersText}>Seguindo</Text>
+                        <Text style={styles.nameText}>{user.name}</Text>
+                        <Text style={styles.textEmail}>{user.email}</Text>
+                        <View style={styles.followersArea}>
+                            <View style={styles.followers}>
+                                <Text style={styles.followersNumber}>{user.followers}</Text>
+                                <Text style={styles.followersText}>Seguidores</Text>
+                            </View>
+                            <View style={styles.followers}>
+                                <Text style={styles.followersNumber}>{user.following}</Text>
+                                <Text style={styles.followersText}>Seguindo</Text>
+                            </View>
                         </View>
-                    </View>
-                    <TouchableOpacity onPress={() => navigation.navigate('Repositories')}>
-                        <Text style={styles.repositories}>
-                            Ver os repositórios
-                        </Text>
-                    </TouchableOpacity>
-                </>
-
+                        <TouchableOpacity onPress={() => navigation.navigate('Repositories')}>
+                            <Text style={styles.repositories}>
+                                Ver os repositórios
+                            </Text>
+                        </TouchableOpacity>
+                    </>
+                }
                 <TextInput
                     placeholder="Busque por um usuário"
                     autoCapitalize="none"
                     style={styles.opened}
+                    value={userName}
+                    onChangeText={setUserName}
                 />
 
                 <TouchableOpacity style={styles.button}
-                    onPress={Search}
+                    onPress={search}
                 >
                     <Text style={styles.textButton}>
                         Buscar
