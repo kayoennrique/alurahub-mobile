@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "login": "kayoennrique",
+      "id": "1",
+      "avatar_url": "https://github.com/kayoennrique.png",
+      "name": "Kayo Ennrique Pereira",
+      "email": "kayo@email.com",
+      "followers": 43,
+      "following": 54
+    },
+    {
+      "login": "nataliakt",
+      "id": "2",
+      "avatar_url": "https://github.com/kayoennrique.png",
+      "name": "Natalia Kelim Thiel",
+      "email": "natalia@email.com",
+      "followers": 51,
+      "following": 7
+    }
+  ],
+  "repos": [
+    {
+      "id": "3",
+      "name": "Arduino_AVES_Telemetria",
+      "data": "16 de fev. de 2024",
+      "postId": 16
+    },
+    {
+      "id": "4",
+      "name": "bot_piano_tiles",
+      "data": "16 de fev. de 2024",
+      "postId": 16
+    },
+    {
+      "id": "16",
+      "name": "2048evolution",
+      "data": "16 de fev. de 2024",
+      "postId": 2
+    },
+    {
+      "name": "charmander",
+      "data": "16 de fev. de 2024",
+      "postId": 2,
+      "id": "2"
+    },
+    {
+      "id": "3",
+      "name": "react-native",
+      "data": "16 de fev. de 2024",
+      "postId": 2
+    },
+    {
+      "name": "projetos",
+      "data": "16 de fev. de 2024",
+      "postId": 1,
+      "id": "5"
+    }
+  ]
+}
