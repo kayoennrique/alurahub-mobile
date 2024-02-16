@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import styles from './styles';
 import { getUserRepositories } from '../../services/requests/repositories';
+import { useIsFocused } from '@react-navigation/native';
 
 export default function Repositories({ route, navigation }) {
     const [repo, setRepo] = useState([]);
+    const thisScreen = useIsFocused();
 
     useEffect(async () => {
         const result = await getUserRepositories(route.params.id)
         setRepo(result)
-    }, [])
+    }, [thisScreen])
 
     return (
         <View style={styles.container}>

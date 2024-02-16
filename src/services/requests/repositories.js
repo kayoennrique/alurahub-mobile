@@ -10,3 +10,18 @@ export async function getUserRepositories(id) {
     return []
   }
 }
+
+export async function saveUserRepositories(postId, name, data, id) {
+  try {
+    await api.put(`/repos/${id}`, {
+      name: name,
+      data: data,
+      postId: postId
+    });
+    return 'sucess'
+  }
+  catch (error) {
+    console.log(error)
+    return 'erro'
+  }
+}
