@@ -40,3 +40,14 @@ export async function createUserRepositories(postId, name, data) {
     return 'erro'
   }
 }
+
+export async function deleteUserRepositories(id) {
+  try {
+    await api.delete(`/repos/${id}`);
+    return 'sucess'
+  }
+  catch (error) {
+    console.log(error)
+    return 'erro'
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, TextInput, Alert } from 'react-native';
 import styles from './styles';
-import { saveUserRepositories } from '../../services/requests/repositories';
+import { deleteUserRepositories, saveUserRepositories } from '../../services/requests/repositories';
 
 export default function InfoRepository({ route, navigation }) {
     const [name, setName] = useState(route.params.item.name);
@@ -21,6 +21,18 @@ export default function InfoRepository({ route, navigation }) {
         }
         else {
             Alert.alert('Erro')
+        }
+    }
+
+    async function remove() {
+        const resultado = await deleteUserRepositories(route.params.item.id)
+
+        if (resultado === 'sucess') {
+            Alert.alert('Repositorio deletado!')
+            navigation.goBack();
+        }
+        else {
+            Alert.alert('Erro ao deletar o repositorio')
         }
     }
 
@@ -50,6 +62,7 @@ export default function InfoRepository({ route, navigation }) {
             </TouchableOpacity>
             <TouchableOpacity
                 style={[styles.button, { backgroundColor: '#DD2B2B', marginTop: 10 }]}
+                onPress={remove}
             >
                 <Text style={styles.textButton}>
                     Deletar
