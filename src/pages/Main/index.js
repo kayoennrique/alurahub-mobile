@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native';
 import styles from './styles';
+import api from '../../services/api';
 
 export default function Main({ navigation }) {
     const [userName, setUserName] = useState('');
     const [user, setUser] = useState({});
+
+    function Search() {
+        api.get('users').then(
+            response => {
+                console.log(response.data);
+            }
+        ).catch(error => {
+            console.log(error);
+        })
+    }
 
     return (
         <ScrollView>
@@ -14,7 +25,7 @@ export default function Main({ navigation }) {
                     <View style={styles.areaImage}>
                         <Image source={{ uri: 'https://github.com/kayoennrique.png' }} style={styles.image} />
                     </View>
-                    <Text style={styles.nameText}>Nome do usuario</Text>
+                    <Text style={styles.nameText}>Kayo Ennrique</Text>
                     <Text style={styles.textEmail}>Email do usuario</Text>
                     <View style={styles.followersArea}>
                         <View style={styles.followers}>
@@ -39,7 +50,9 @@ export default function Main({ navigation }) {
                     style={styles.opened}
                 />
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button}
+                    onPress={Search}
+                >
                     <Text style={styles.textButton}>
                         Buscar
                     </Text>
