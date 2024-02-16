@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Text, View, Image, TouchableOpacity, TextInput, Alert, ScrollView } from 'react-native';
 import styles from './styles';
-import api from '../../services/api';
 import { searchUser } from '../../services/requests/users';
 
 export default function Main({ navigation }) {
@@ -43,7 +42,7 @@ export default function Main({ navigation }) {
                                 <Text style={styles.followersText}>Seguindo</Text>
                             </View>
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('Repositories')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Repositories', { id: user.id })}>
                             <Text style={styles.repositories}>
                                 Ver os repositórios
                             </Text>
